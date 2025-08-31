@@ -49,7 +49,7 @@ export default function Quiz() {
     console.log("Données rechargées");
   };
 
-  if (!question) return <p>Chargement...</p>;
+  if (!question) return <p>Chargement en cours...</p>;
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
