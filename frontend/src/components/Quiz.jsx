@@ -4,6 +4,7 @@ export default function Quiz() {
   const [question, setQuestion] = useState(null);
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState(null);
+  const backendLink = "https://dev-web-quiz.onrender.com/api"
 
   // Récupérer une question depuis le backend
   useEffect(() => {
@@ -18,7 +19,8 @@ export default function Quiz() {
   // }, []);
 
   const getQuestions = () => {
-    fetch("http://localhost:5000/api/question")
+    // fetch("http://localhost:5000/api/question")
+    fetch(`${backendLink}/question`)
       .then((res) => res.json())
       .then((data) => setQuestion(data))
       .catch((err) => console.error(err));
@@ -28,7 +30,8 @@ export default function Quiz() {
     e.preventDefault();
     if (!question) return;
 
-    const res = await fetch("http://localhost:5000/api/answer", {
+    // const res = await fetch("http://localhost:5000/api/answer", {
+    const res = await fetch(`${backendLink}/answer`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: question.id, reponse: answer }),
@@ -79,7 +82,8 @@ export default function Quiz() {
             <div className="text-green-600 font-bold">
               ✅ Correct ! {result.apprenant.nom}
               <img
-                src={`http://localhost:5000${result.apprenant.photo}`}
+                // src={`http://localhost:5000${result.apprenant.photo}`}
+                  src={`https://dev-web-quiz.onrender.com${result.apprenant.photo}`}
                 alt={result.apprenant.nom}
                 // className="mt-2 w-32 h-32 object-cover rounded-full"
                 className="mt-2 w-50 h-50 object-cover rounded-full"
